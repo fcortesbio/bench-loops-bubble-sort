@@ -14,22 +14,44 @@ function bubbleSortVanilla(arr) {
     return output;
 }
 
+/**
+ * Bubble sort implementation using for loops
+ * - Outer loop runs n-1 times
+ * - Inner loop runs up to n-i-1 times
+ * - Uses proper array destructuring for swapping
+ */
+function bubbleSortFor(arr) {
+    const output = [...arr]; // Create a copy to avoid modifying the input
+    const n = output.length;
+    
+    for (let i = 0; i < n - 1; i++) {
+        for (let j = 0; j < n - i - 1; j++) {
+            if (output[j] > output[j + 1]) {
+                // Proper destructuring assignment for swapping
+                [output[j], output[j + 1]] = [output[j + 1], output[j]];
+            }
+        }
+    }
+    
+    return output;
+}
 
 function bubbleSortRWhile(arr) {
-    let output = arr
+    let output = [...arr]; // Create a copy to avoid modifying the input
     let n = output.length;
     let i = n;
     while (i--) {
         let j = 0;
         while (j < i) {
-            if (arr[j] > arr[j + 1]) {
-                arr[j], arr[j + 1] = arr[j + 1], arr[j];
+            if (output[j] > output[j + 1]) {
+                // Proper destructuring assignment for swapping
+                [output[j], output[j + 1]] = [output[j + 1], output[j]];
             }
             j++;
         }
     }
 
-    return output
+    return output;
 }
 
 function benchmark(name, fn, iterations = 10) {
@@ -49,4 +71,4 @@ function benchmark(name, fn, iterations = 10) {
 }
 
 benchmark("Bubble Sort (for loop)", bubbleSortFor);
-benchmark("Bubble Sort (reverse while loop)", bubbleSortReverseWhile);
+benchmark("Bubble Sort (reverse while loop)", bubbleSortRWhile);
